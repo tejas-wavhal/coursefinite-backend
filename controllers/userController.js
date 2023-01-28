@@ -7,7 +7,6 @@ import crypto from "crypto"
 import { Course } from "../models/Course.js"
 import cloudinary from "cloudinary"
 import getDataUri from "../utils/dataUri.js"
-import { get } from "http"
 
 //REGISTER
 export const register = catchAsyncError(async (req, res, next) => {
@@ -60,7 +59,10 @@ export const login = catchAsyncError(async (req, res, next) => {
 //LOGOUT
 export const logout = catchAsyncError(async (req, res, next) => { //doing cookie empty //⭕
   res.status(200).cookie("token", null, {
-    expires: new Date(Date.now())
+    expires: new Date(Date.now()),
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
   }).json({
     success: true,
     message: "Logged Out Successfullly"
