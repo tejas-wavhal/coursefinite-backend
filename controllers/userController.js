@@ -58,7 +58,7 @@ export const login = catchAsyncError(async (req, res, next) => {
 
 //LOGOUT
 export const logout = catchAsyncError(async (req, res, next) => { //doing cookie empty //⭕
-  res.status(200).cookie("token", null, {
+  res.status(200).clearCookie("token", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
     secure: true,
