@@ -11,7 +11,7 @@ router.route("/register").post(singleUpload, register)
 router.route("/login").post(login)
 
 //logout
-router.route("/logout").get(logout)
+router.route("/logout").post(logout)
 
 //get my profile
 router.route("/me").get(isAuthenticated, getMyProfile) //isAuthenticated 1st so that only login can access this route. non login user will get the error which is in auth.js

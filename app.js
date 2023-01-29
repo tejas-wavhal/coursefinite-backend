@@ -33,7 +33,7 @@ app.use("/api/v1", user) //hear("/api/v1") is called prefix
 
 
 app.get('/', (req, res) => {
-  res.send(`<h1>Server is Working <a href=${process.env.FRONTEND_URL}>Click hear to visit Frontend</a></h1>`)
+  res.send(`<h1>Server is working <a href=${process.env.FRONTEND_URL}>Click hear to visit Frontend</a></h1>`)
 })
 
 export default app;
