@@ -20,5 +20,5 @@ router.route("/course/:id")
 //Delete lecture
 router.route("/lecture").delete(isAuthenticated, authorizeAdmin, singleUpload, deleteLecture)
 
-
+  
 export default router;

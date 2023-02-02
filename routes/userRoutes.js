@@ -55,8 +55,11 @@ router.route("/admin/user/:id").put(isAuthenticated, authorizeAdmin, updateUserR
 // GET STATS
 router.route("/admin/stats").get(isAuthenticated, authorizeAdmin, getStats)
 
+// contact form
+router.route("/contact").post(contact);
 
-
+// Request form
+router.route("/courserequest").post(courseRequest);
 
 
 export default router;
