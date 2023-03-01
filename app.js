@@ -11,11 +11,9 @@ config({
 const app = express()
 
 //Using Middleware
-app.use(express.json()) //So that we can access by using req.body in ./courseController.js 
-app.use(express.urlencoded({  //So that we can access by using req.body in ./courseController.js 
-  extended: true
-}))
-app.use(cookieParser()) //⭕so there will be no error while testing "api/v1/me"
+app.use(express.json({limit:'150mb'})); //So that we can access by using req.body in ./courseController.js 
+app.use(cookieParser()); //⭕so there will be no error while testing "api/v1/me"
+app.use(express.urlencoded({limit: '150mb', extended: true})); //extended: true So that we can access by using req.body in ./courseController.js 
 
 app.use(cors({  //so that we can frontend and backendnwith different website
   origin: process.env.FRONTEND_URL, //Only the front url can access the backend url  //np use of postman/thunderClient now
