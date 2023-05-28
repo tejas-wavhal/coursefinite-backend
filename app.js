@@ -26,9 +26,11 @@ app.use(cors({  //so that we can frontend and backendnwith different website
 // importing and using Routes
 import course from "./routes/courseRoutes.js"
 import user from "./routes/userRoutes.js"
+import payment from "./routes/paymentRoutes.js"
 
 app.use("/api/v1", course) //hear("/api/v1") is called prefix
-app.use("/api/v1", user) //hear("/api/v1") is called prefix
+app.use("/api/v1", user)
+app.use("/api/v1", payment)
 
 
 
