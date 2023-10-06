@@ -57,7 +57,7 @@ const schema = new mongoose.Schema({
   resetPasswordExpire: String //default type=String   //this will be used when forget password  
 })
 
-schema.pre("save", async function (next) {  //⭕
+schema.pre("save", async function (next) {
   //password hash
   if (!this.isModified("password")) return next() //ex=> When we update profile then we are not updating password so by this syntax the password will get hash only when the "password is modified"
   const hashedPassword = await bcrypt.hash(this.password, 10)  //this.password because we are passing the password which is in database of the user as a payload
@@ -65,7 +65,7 @@ schema.pre("save", async function (next) {  //⭕
   next()
 })
 
-schema.methods.getJWTToken = function () {   //⭕RATTA
+schema.methods.getJWTToken = function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
     expiresIn: "15d",
   }) //this._id because we are passing the id which is in database of the user as a payload
@@ -78,7 +78,7 @@ schema.methods.comparePassword = async function (password) {
 schema.methods.getResetToken = function () {
   const resetToken = crypto.randomBytes(20).toString("hex")
 
-  this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex")    //⭕RATTA //"sha256" is algorithm there are many algorithm can check on google. //THIS WHOLE SYNTAX WILL RETURN A TOKEN WHICH WILL BE HASHED
+  this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex")    // "sha256" is algorithm there are many algorithm can check on google. //THIS WHOLE SYNTAX WILL RETURN A TOKEN WHICH WILL BE HASHED
 
   this.resetPasswordExpire = Date.now() + 15 * 60 * 1000
 

@@ -57,7 +57,7 @@ export const login = catchAsyncError(async (req, res, next) => {
 
 
 //LOGOUT
-export const logout = catchAsyncError(async (req, res, next) => { //doing cookie empty //⭕
+export const logout = catchAsyncError(async (req, res, next) => { //doing cookie empty 
   res.status(200).cookie("token", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
@@ -73,7 +73,7 @@ export const logout = catchAsyncError(async (req, res, next) => { //doing cookie
 //GET MY PROFILE
 export const getMyProfile = catchAsyncError(async (req, res, next) => {
 
-  const user = await User.findById(req.user._id)  //⭕⭕ how user id will be recieved by req.user._id ?
+  const user = await User.findById(req.user._id)
 
   res.status(200).json({
     success: true,
@@ -84,7 +84,7 @@ export const getMyProfile = catchAsyncError(async (req, res, next) => {
 // DELETE MY PROFILE 
 export const deleteMyProfile = catchAsyncError(async (req, res, next) => {
 
-  const user = await User.findById(req.user._id)  //⭕⭕ how user id will be recieved by req.user._id ?
+  const user = await User.findById(req.user._id)
 
   await cloudinary.v2.uploader.destroy(user.avatar.public_id)
 
@@ -201,7 +201,7 @@ export const resetPassword = catchAsyncError(async (req, res, next) => {
 
   const { token } = req.params //Note: {token} because route /resetpassword/:token is given for resetPassword
 
-  const resetPasswordToken = crypto.createHash("sha256").update(token).digest("hex")    //⭕RATTA //"sha256" is algorithm there are many algorithm can check on google. //THIS WHOLE SYNTAX WILL RETURN A TOKEN WHICH WILL BE HASHED
+  const resetPasswordToken = crypto.createHash("sha256").update(token).digest("hex")    //"sha256" is algorithm there are many algorithm can check on google. //THIS WHOLE SYNTAX WILL RETURN A TOKEN WHICH WILL BE HASHED
 
   const user = await User.findOne({
     resetPasswordToken,

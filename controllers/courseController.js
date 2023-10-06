@@ -29,9 +29,9 @@ export const getAllCourses = catchAsyncError(async (req, res, next) => {
 
 export const createCourse = catchAsyncError(async (req, res, next) => {
 
-  const { title, description, category, createdBy } = req.body //⭕RATTA
+  const { title, description, category, createdBy } = req.body 
 
-  if (!title || !description || !category || !createdBy) return next(new ErrorHandler("Please add all fields", 400)) //Hear by calling "next" then next middleware will run but there is no other middleware in ./caseroutes.js then the ErrorMiddleware will run and its 1st parameter is "err"  //⭕RATTA
+  if (!title || !description || !category || !createdBy) return next(new ErrorHandler("Please add all fields", 400)) //Hear by calling "next" then next middleware will run but there is no other middleware in ./caseroutes.js then the ErrorMiddleware will run and its 1st parameter is "err"  
 
   const file = req.file
   // console.log(file)

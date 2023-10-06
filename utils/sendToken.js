@@ -2,10 +2,10 @@ export const sendToken = (res, user, message, statusCode = 200) => {   //if stat
 
   const token = user.getJWTToken()
 
-  const options = {   //⭕RATTA
+  const options = {   
     expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    secure: true,   //if secure=true then token won't save in cookie (in deployment)   -6_pack_programmer
+    secure: true,   //if secure=true then token won't save in cookie (in deployment)
     sameSite: "none"
   }
 
